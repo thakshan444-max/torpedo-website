@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Torpedo — Submarines, Burgers & More | Colombo 2</title>
+<meta name="description" content="Torpedo — loaded torpedos, juicy burgers and crave-worthy fast food in Colombo 2. Dine-in, takeaway, delivery. Open until 12 AM.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Black+Ops+One&family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B1F2A;
+    --navy-deep:#061620;
+    --orange:#FF5A1F;
+    --orange-dim:#C7430E;
+    --cream:#F2E9D8;
+    --cream-dim:#D9CEB8;
+    --steel:#6E8696;
+    --hazard:#FFC93C;
+    --line: rgba(242,233,216,0.14);
+    --maxw: 1180px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--navy);
+    color:var(--cream);
+    font-family:'Work Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  img,svg{display:block;max-width:100%;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+
+  .blueprint-bg{
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:40px 40px;
+  }
+
+  .eyebrow{
+    font-family:'Black Ops One', sans-serif;
+    font-size:12px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--orange);
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:'';
+    width:8px;height:8px;
+    background:var(--orange);
+    display:inline-block;
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  }
+
+  h1,h2,h3{font-family:'Anton', sans-serif; font-weight:400; letter-spacing:0.01em; margin:0;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(11,31,42,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:74px;
+  }
+  .logo{
+    font-family:'Anton', sans-serif;
+    font-size:26px;
+    letter-spacing:0.03em;
+    color:var(--cream);
+  }
+  .logo span{color:var(--orange);}
+  .navlinks{display:flex; gap:34px; align-items:center;}
+  .navlinks a{
+    font-size:13px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--cream-dim);
+    transition:color .2s;
+  }
+  .navlinks a:hover{color:var(--orange);}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'Work Sans', sans-serif;
+    font-weight:700;
+    font-size:13px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    padding:13px 22px;
+    border-radius:3px;
+    transition:transform .15s, background .2s, box-shadow .2s;
+    white-space:nowrap;
+  }
+  .btn-primary{
+    background:var(--orange); color:var(--navy-deep);
+    box-shadow:0 0 0 1px var(--orange-dim);
+  }
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 6px 18px rgba(255,90,31,0.35);}
+  .btn-ghost{
+    background:transparent; color:var(--cream); border:1px solid var(--line);
+  }
+  .btn-ghost:hover{border-color:var(--orange); color:var(--orange);}
+  .nav-cta{display:flex; gap:12px;}
+  @media (max-width: 860px){
+    .navlinks{display:none;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:90px 0 70px;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap:40px;
+    align-items:center;
+  }
+  .hero h1{
+    font-size:clamp(58px, 9vw, 108px);
+    line-height:0.92;
+    color:var(--cream);
+    margin:18px 0 22px;
+  }
+  .hero h1 em{font-style:normal; color:var(--orange);}
+  .hero p.lede{
+    font-size:18px;
+    line-height:1.6;
+    color:var(--cream-dim);
+    max-width:460px;
+    margin:0 0 32px;
+  }
+  .hero-ctas{display:flex; gap:14px; flex-wrap:wrap;}
+  .hero-diagram-wrap{position:relative;}
+  .tag-classified{
+    position:absolute; top:-14px; right:6px;
+    font-family:'Black Ops One', sans-serif;
+    font-size:11px;
+    letter-spacing:0.15em;
+    color:var(--hazard);
+    border:1px solid var(--hazard);
+    padding:5px 10px;
+    transform:rotate(4deg);
+    background:rgba(11,31,42,0.85);
+  }
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr;}
+    .hero p.lede{max-width:100%;}
+  }
+
+  /* ---------- STATS STRIP ---------- */
+  .stats{
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    background:var(--navy-deep);
+  }
+  .stats .wrap{
+    display:flex; flex-wrap:wrap; gap:0;
+    padding:0;
+  }
+  .stat{
+    flex:1 1 220px;
+    padding:26px 28px;
+    border-right:1px solid var(--line);
+  }
+  .stat:last-child{border-right:none;}
+  .stat .num{
+    font-family:'Anton', sans-serif;
+    font-size:30px;
+    color:var(--orange);
+    display:block;
+  }
+  .stat .label{
+    font-size:12px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--cream-dim);
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about{padding:100px 0;}
+  .about-grid{
+    display:grid;
+    grid-template-columns: 0.5fr 1fr;
+    gap:60px;
+  }
+  .about h2{
+    font-size:clamp(34px,4vw,46px);
+    color:var(--cream);
+    margin:16px 0 0;
+    line-height:1.05;
+  }
+  .about-copy{
+    font-size:17px; line-height:1.75; color:var(--cream-dim);
+    border-left:2px solid var(--orange);
+    padding-left:28px;
+  }
+  .about-copy strong{color:var(--cream); font-weight:600;}
+  @media (max-width:860px){ .about-grid{grid-template-columns:1fr; gap:28px;} }
+
+  /* ---------- MENU ---------- */
+  .menu{padding:80px 0 100px;}
+  .menu-head{display:flex; justify-content:space-between; align-items:flex-end; gap:20px; flex-wrap:wrap; margin-bottom:46px;}
+  .menu-head h2{font-size:clamp(34px,4vw,46px);}
+  .menu-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+  }
+  .ration-card{
+    position:relative;
+    background:var(--navy-deep);
+    border:1px dashed var(--steel);
+    padding:26px 22px 24px;
+    min-height:230px;
+    display:flex; flex-direction:column; justify-content:space-between;
+    transition:border-color .2s, transform .2s;
+  }
+  .ration-card:hover{border-color:var(--orange); transform:translateY(-4px);}
+  .ration-card .idx{
+    font-family:'Black Ops One', sans-serif;
+    font-size:11px; color:var(--steel); letter-spacing:0.1em;
+  }
+  .ration-card h3{
+    font-size:24px; color:var(--cream); margin:14px 0 10px;
+  }
+  .ration-card p{
+    font-size:14px; color:var(--cream-dim); line-height:1.55; margin:0;
+  }
+  .stamp{
+    position:absolute; top:14px; right:14px;
+    width:46px; height:46px;
+    border:1.5px solid var(--hazard);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    transform:rotate(-12deg);
+    font-family:'Black Ops One', sans-serif;
+    font-size:8px; color:var(--hazard);
+    text-align:center; letter-spacing:0.03em;
+    line-height:1.1;
+    opacity:0.85;
+  }
+  @media (max-width:980px){ .menu-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:560px){ .menu-grid{grid-template-columns:1fr;} }
+
+  /* ---------- LOCATION ---------- */
+  .location{
+    padding:90px 0 100px;
+    background:var(--navy-deep);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .loc-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:50px;
+    align-items:start;
+  }
+  .loc-grid h2{font-size:clamp(32px,4vw,42px); margin-bottom:24px;}
+  .info-row{
+    display:flex; gap:16px; padding:16px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .info-row:first-of-type{padding-top:0;}
+  .info-row .ic{
+    width:20px; flex:0 0 20px; color:var(--orange); margin-top:3px;
+  }
+  .info-row .t{font-size:15px; line-height:1.5; color:var(--cream-dim);}
+  .info-row .t strong{color:var(--cream); display:block; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:4px;}
+  .hours-table{width:100%; border-collapse:collapse; margin-top:6px;}
+  .hours-table td{
+    font-size:14px; padding:9px 0; color:var(--cream-dim);
+    border-bottom:1px solid var(--line);
+  }
+  .hours-table td.day{color:var(--cream); font-weight:600; width:40%;}
+  .map-frame{
+    border:1px solid var(--line);
+    overflow:hidden;
+    height:100%;
+    min-height:380px;
+  }
+  .map-frame iframe{width:100%; height:100%; min-height:380px; border:0; filter: invert(0.92) hue-rotate(180deg) contrast(0.9);}
+  @media (max-width:900px){ .loc-grid{grid-template-columns:1fr;} .map-frame{order:-1; min-height:280px;} .map-frame iframe{min-height:280px;} }
+
+  /* ---------- CTA BAND ---------- */
+  .ctaband{
+    background:var(--orange);
+    padding:70px 0;
+    text-align:center;
+  }
+  .ctaband h2{
+    font-size:clamp(36px,6vw,64px);
+    color:var(--navy-deep);
+    line-height:1.02;
+    margin-bottom:10px;
+  }
+  .ctaband p{color:var(--navy-deep); opacity:0.75; font-size:16px; margin:0 0 30px;}
+  .ctaband .hero-ctas{justify-content:center;}
+  .ctaband .btn-primary{background:var(--navy-deep); color:var(--cream); box-shadow:none;}
+  .ctaband .btn-primary:hover{box-shadow:0 6px 18px rgba(6,22,32,0.35);}
+  .ctaband .btn-ghost{border-color:rgba(6,22,32,0.4); color:var(--navy-deep);}
+  .ctaband .btn-ghost:hover{border-color:var(--navy-deep);}
+
+  /* ---------- FOOTER ---------- */
+  footer{padding:44px 0; background:var(--navy);}
+  .foot-grid{
+    display:flex; justify-content:space-between; align-items:center;
+    flex-wrap:wrap; gap:16px;
+    font-size:13px; color:var(--steel);
+  }
+  .foot-grid a{color:var(--cream-dim);}
+  .foot-grid a:hover{color:var(--orange);}
+
+  ::selection{background:var(--orange); color:var(--navy-deep);}
+
+  /* ---------- GALLERY SLIDESHOW ---------- */
+  .gallery{
+    padding:90px 0;
+    background:var(--navy-deep);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    overflow:hidden;
+  }
+  .gallery-head{margin-bottom:48px;}
+  .gallery-head h2{font-size:clamp(32px,4vw,42px); margin-top:16px;}
+
+  .slideshow{
+    position:relative;
+    width:100%;
+    border:1px solid var(--line);
+    background:var(--navy);
+  }
+  .slideshow-track{
+    display:flex;
+    transition: transform 0.65s cubic-bezier(.65,.05,.36,1);
+    height:560px;
+  }
+  .slide{
+    flex:0 0 100%;
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--navy);
+  }
+  .slide img, .slide video{
+    width:100%; height:100%; object-fit:contain; background:#000;
+  }
+  .slide-cap{
+    position:absolute; left:0; bottom:0; right:0;
+    padding:18px 26px;
+    background:linear-gradient(to top, rgba(6,22,32,0.92), transparent);
+    font-size:13px; letter-spacing:0.08em; text-transform:uppercase; color:var(--cream-dim);
+  }
+  .slide-arrow{
+    position:absolute; top:50%; transform:translateY(-50%);
+    width:46px; height:46px; border-radius:50%;
+    background:rgba(11,31,42,0.75);
+    border:1px solid var(--line);
+    color:var(--cream);
+    display:flex; align-items:center; justify-content:center;
+    font-size:18px; cursor:pointer; z-index:5;
+    transition: background .2s, border-color .2s;
+  }
+  .slide-arrow:hover{ background:var(--orange); border-color:var(--orange); color:var(--navy-deep); }
+  .slide-arrow.prev{ left:18px; }
+  .slide-arrow.next{ right:18px; }
+  .slide-dots{
+    position:absolute; bottom:16px; left:0; right:0;
+    display:flex; justify-content:center; gap:9px; z-index:5;
+  }
+  .slide-dot{
+    width:9px; height:9px; border-radius:50%;
+    background:rgba(242,233,216,0.35);
+    border:none; cursor:pointer; padding:0;
+    transition: background .2s, transform .2s;
+  }
+  .slide-dot.active{ background:var(--orange); transform:scale(1.25); }
+
+  /* fade + slide-in on scroll */
+  .reveal{
+    opacity:0; transform:translateY(36px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.is-visible{opacity:1; transform:translateY(0);}
+  .reveal-delay-1{transition-delay:0.12s;}
+  .reveal-delay-2{transition-delay:0.24s;}
+
+  @media (max-width:760px){
+    .slideshow-track{ height:420px; }
+    .slide-arrow{ width:38px; height:38px; font-size:15px; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1; transform:none; transition:none;}
+  }
+
+  .variant-row{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+    margin-bottom:50px;
+  }
+  .variant-card{
+    border:1px solid var(--line);
+    overflow:hidden;
+    position:relative;
+    aspect-ratio: 4/5;
+  }
+  .variant-card img{width:100%; height:100%; object-fit:cover;}
+  .variant-card .vc-label{
+    position:absolute; bottom:0; left:0; right:0;
+    padding:14px 16px;
+    background:linear-gradient(to top, rgba(6,22,32,0.9), transparent);
+    font-family:'Anton', sans-serif;
+    font-size:18px;
+    letter-spacing:0.02em;
+    color:var(--cream);
+  }
+  @media (max-width:760px){ .variant-row{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="logo">TORPEDO<span>.</span></div>
+    <div class="navlinks">
+      <a href="#menu">Menu</a>
+      <a href="#about">Story</a>
+      <a href="#location">Location</a>
+      <a href="#location">Hours</a>
+    </div>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" href="https://www.google.com/maps/dir/?api=1&destination=66+Vauxhall+Street+Colombo+2" target="_blank" rel="noopener">Directions</a>
+      <a class="btn btn-primary" href="tel:+94777121575">Call Now</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero blueprint-bg">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow reveal">Colombo 2 · Fast Food HQ</span>
+      <h1 class="reveal reveal-delay-1">FUEL<br>FOR THE<br><em>HUNGRY.</em></h1>
+      <p class="lede reveal reveal-delay-2">Loaded torpedos, juicy burgers and crave-worthy bites — built fresh, fired fast. Dine-in, takeaway or delivery. One bite and you'll know.</p>
+      <div class="hero-ctas reveal reveal-delay-2">
+        <a class="btn btn-primary" href="tel:+94777121575">📞 Call to Order</a>
+        <a class="btn btn-ghost" href="#menu">View Menu</a>
+      </div>
+    </div>
+
+    <div class="hero-diagram-wrap reveal reveal-delay-1">
+      <span class="tag-classified">SPEC SHEET — UNIT 01</span>
+      <svg viewBox="0 0 600 420" xmlns="http://www.w3.org/2000/svg">
+        <!-- body outline: torpedo / sub sandwich silhouette -->
+        <path d="M 90 210
+                 C 90 150, 160 118, 260 118
+                 L 430 118
+                 C 480 118, 510 130, 528 158
+                 L 540 210
+                 L 528 262
+                 C 510 290, 480 302, 430 302
+                 L 260 302
+                 C 160 302, 90 270, 90 210 Z"
+              fill="none" stroke="#F2E9D8" stroke-width="2.5"/>
+        <!-- nose tip detail -->
+        <circle cx="96" cy="210" r="5" fill="#FF5A1F"/>
+        <!-- layer lines (bread / filling / cheese / sauce) -->
+        <path d="M 110 168 C 220 150, 380 150, 522 172" fill="none" stroke="#6E8696" stroke-width="1.4" stroke-dasharray="2 5"/>
+        <path d="M 105 195 L 525 200" fill="none" stroke="#FFC93C" stroke-width="1.6"/>
+        <path d="M 102 225 L 528 222" fill="none" stroke="#FF5A1F" stroke-width="2"/>
+        <path d="M 110 252 C 220 270, 380 270, 520 248" fill="none" stroke="#6E8696" stroke-width="1.4" stroke-dasharray="2 5"/>
+        <!-- tail fins (torpedo reference) -->
+        <path d="M 528 158 L 560 130 L 552 168 Z" fill="#F2E9D8" opacity="0.9"/>
+        <path d="M 528 262 L 560 290 L 552 252 Z" fill="#F2E9D8" opacity="0.9"/>
+        <path d="M 540 210 L 575 210" stroke="#F2E9D8" stroke-width="2.5"/>
+        <circle cx="580" cy="210" r="5" fill="#F2E9D8"/>
+
+        <!-- callout 1 -->
+        <line x1="180" y1="118" x2="180" y2="80" stroke="#6E8696" stroke-width="1" stroke-dasharray="3 3"/>
+        <circle cx="180" cy="68" r="13" fill="none" stroke="#FF5A1F" stroke-width="1.5"/>
+        <text x="180" y="72" text-anchor="middle" font-family="Black Ops One" font-size="11" fill="#FF5A1F">1</text>
+        <text x="180" y="46" text-anchor="middle" font-family="Work Sans" font-size="11" letter-spacing="1" fill="#D9CEB8">TOASTED ROLL</text>
+
+        <!-- callout 2 -->
+        <line x1="340" y1="118" x2="340" y2="80" stroke="#6E8696" stroke-width="1" stroke-dasharray="3 3"/>
+        <circle cx="340" cy="68" r="13" fill="none" stroke="#FF5A1F" stroke-width="1.5"/>
+        <text x="340" y="72" text-anchor="middle" font-family="Black Ops One" font-size="11" fill="#FF5A1F">2</text>
+        <text x="340" y="46" text-anchor="middle" font-family="Work Sans" font-size="11" letter-spacing="1" fill="#D9CEB8">MELTED CHEESE</text>
+
+        <!-- callout 3 -->
+        <line x1="155" y1="302" x2="155" y2="345" stroke="#6E8696" stroke-width="1" stroke-dasharray="3 3"/>
+        <circle cx="155" cy="357" r="13" fill="none" stroke="#FF5A1F" stroke-width="1.5"/>
+        <text x="155" y="361" text-anchor="middle" font-family="Black Ops One" font-size="11" fill="#FF5A1F">3</text>
+        <text x="155" y="382" text-anchor="middle" font-family="Work Sans" font-size="11" letter-spacing="1" fill="#D9CEB8">LOADED FILLING</text>
+
+        <!-- callout 4 -->
+        <line x1="400" y1="302" x2="400" y2="345" stroke="#6E8696" stroke-width="1" stroke-dasharray="3 3"/>
+        <circle cx="400" cy="357" r="13" fill="none" stroke="#FF5A1F" stroke-width="1.5"/>
+        <text x="400" y="361" text-anchor="middle" font-family="Black Ops One" font-size="11" fill="#FF5A1F">4</text>
+        <text x="400" y="382" text-anchor="middle" font-family="Work Sans" font-size="11" letter-spacing="1" fill="#D9CEB8">SIGNATURE SAUCE</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="stats blueprint-bg">
+  <div class="wrap">
+    <div class="stat"><span class="num">4.7 ★</span><span class="label">254 Google Reviews</span></div>
+    <div class="stat"><span class="num">Rs 1–2K</span><span class="label">Per Person</span></div>
+    <div class="stat"><span class="num">12 PM–12 AM</span><span class="label">Open Daily (1AM Fri–Sat)</span></div>
+    <div class="stat"><span class="num">3 WAYS</span><span class="label">Dine-in · Takeaway · Delivery</span></div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="reveal">
+      <span class="eyebrow">The Briefing</span>
+      <h2>Built for one mission:<br>flavor.</h2>
+    </div>
+    <p class="about-copy reveal reveal-delay-1">
+      <strong>Torpedo is Colombo's loading dock for bold, crave-worthy comfort food.</strong> Every torpedo and burger is stacked, dressed and fired fresh — no shortcuts, no waiting around. Whether it's a fast lunch run or a late-night mission, we keep it satisfying, fast, and full of flavor. Grab a seat, pick it up, or have it land at your door. <strong>One bite and you'll know.</strong>
+    </p>
+  </div>
+</section>
+
+<section class="gallery">
+  <div class="wrap">
+    <div class="gallery-head reveal">
+      <span class="eyebrow">From The Galley</span>
+      <h2>Real food. Real Torpedo.</h2>
+    </div>
+
+    <div class="slideshow reveal" id="slideshow" aria-roledescription="carousel">
+      <div class="slideshow-track" id="slideTrack">
+        <div class="slide">
+          <img src="assets/onebite-banner.jpg" alt="Torpedo loaded sub and burger — One Bite And You Know">
+          <div class="slide-cap">One bite and you know</div>
+        </div>
+        <div class="slide">
+          <video src="assets/torpedo-reel.mp4" poster="assets/reel-poster.jpg" controls preload="metadata" playsinline></video>
+          <div class="slide-cap">Fresh off the grill — watch it loaded</div>
+        </div>
+        <div class="slide">
+          <img src="assets/chicken-torpedo.jpg" alt="Chicken Torpedo — Boom 8 inch or Kaboom 12 inch">
+          <div class="slide-cap">Chicken Torpedo · Boom 8&quot; / Kaboom 12&quot;</div>
+        </div>
+        <div class="slide">
+          <img src="assets/beef-torpedo.jpg" alt="Beef Torpedo poster">
+          <div class="slide-cap">Beef Torpedo · Boom 8&quot; / Kaboom 12&quot;</div>
+        </div>
+        <div class="slide">
+          <img src="assets/royale-torpedo.jpg" alt="Torpedo Royale poster">
+          <div class="slide-cap">Torpedo Royale · Boom 8&quot; / Kaboom 12&quot;</div>
+        </div>
+      </div>
+      <button class="slide-arrow prev" id="slidePrev" aria-label="Previous slide">←</button>
+      <button class="slide-arrow next" id="slideNext" aria-label="Next slide">→</button>
+      <div class="slide-dots" id="slideDots"></div>
+    </div>
+  </div>
+</section>
+
+<section class="menu" id="menu">
+  <div class="wrap">
+    <div class="menu-head">
+      <div class="reveal">
+        <span class="eyebrow">Menu Briefing</span>
+        <h2>Pick your payload.</h2>
+      </div>
+      <img src="assets/torpedo-trio.jpg" alt="Beef, Royale and Chicken Torpedos lineup" loading="lazy" style="width:180px; border:1px solid var(--line);" class="reveal reveal-delay-1">
+    </div>
+
+    <div class="variant-row">
+      <div class="variant-card reveal">
+        <img src="assets/beef-torpedo.jpg" alt="Beef Torpedo — Boom 8 inch or Kaboom 12 inch" loading="lazy">
+        <div class="vc-label">Beef Torpedo</div>
+      </div>
+      <div class="variant-card reveal reveal-delay-1">
+        <img src="assets/royale-torpedo.jpg" alt="Torpedo Royale — Boom 8 inch or Kaboom 12 inch" loading="lazy">
+        <div class="vc-label">Torpedo Royale</div>
+      </div>
+      <div class="variant-card reveal reveal-delay-2">
+        <img src="assets/chicken-torpedo-2.jpg" alt="Chicken Torpedo — Boom 8 inch or Kaboom 12 inch" loading="lazy">
+        <div class="vc-label">Chicken Torpedo</div>
+      </div>
+    </div>
+    <div class="menu-grid">
+      <div class="ration-card">
+        <div class="stamp">UNIT<br>01</div>
+        <div><span class="idx">CATEGORY / 01</span><h3>Torpedos</h3></div>
+        <p>Loaded subs stacked high and dressed bold — our namesake, built to order.</p>
+      </div>
+      <div class="ration-card">
+        <div class="stamp">UNIT<br>02</div>
+        <div><span class="idx">CATEGORY / 02</span><h3>Burgers</h3></div>
+        <p>Juicy patties, melted cheese, classic crunch. Comfort food, no compromises.</p>
+      </div>
+      <div class="ration-card">
+        <div class="stamp">UNIT<br>03</div>
+        <div><span class="idx">CATEGORY / 03</span><h3>Sides</h3></div>
+        <p>Crispy fries, rings, and dips standing by to back up the main order.</p>
+      </div>
+      <div class="ration-card">
+        <div class="stamp">UNIT<br>04</div>
+        <div><span class="idx">CATEGORY / 04</span><h3>Late-Night Bites</h3></div>
+        <p>Quick, hot and ready — for whenever the city isn't sleeping.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="location" id="location">
+  <div class="wrap loc-grid">
+    <div>
+      <span class="eyebrow">Coordinates</span>
+      <h2>Find the base.</h2>
+
+      <div class="info-row">
+        <div class="ic">📍</div>
+        <div class="t"><strong>Address</strong>66 Vauxhall Street, Colombo 2, Colombo 00200, Sri Lanka</div>
+      </div>
+      <div class="info-row">
+        <div class="ic">📞</div>
+        <div class="t"><strong>Phone</strong><a href="tel:+94777121575">077 712 1575</a></div>
+      </div>
+      <div class="info-row">
+        <div class="ic">✉️</div>
+        <div class="t"><strong>Email</strong><a href="mailto:torpedohq@gmail.com">torpedohq@gmail.com</a></div>
+      </div>
+
+      <table class="hours-table">
+        <tr><td class="day">Monday</td><td>12 PM – 12 AM</td></tr>
+        <tr><td class="day">Tuesday</td><td>12 PM – 12 AM</td></tr>
+        <tr><td class="day">Wednesday</td><td>12 PM – 12 AM</td></tr>
+        <tr><td class="day">Thursday</td><td>12 PM – 12 AM</td></tr>
+        <tr><td class="day">Friday</td><td>1 PM – 1 AM</td></tr>
+        <tr><td class="day">Saturday</td><td>1 PM – 1 AM</td></tr>
+        <tr><td class="day">Sunday</td><td>12 PM – 12 AM</td></tr>
+      </table>
+    </div>
+
+    <div class="map-frame">
+      <iframe
+        src="https://maps.google.com/maps?q=66%20Vauxhall%20Street%2C%20Colombo%2002%2C%20Sri%20Lanka&z=16&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<section class="ctaband">
+  <div class="wrap">
+    <h2>ONE BITE<br>AND YOU'LL KNOW.</h2>
+    <p>Dine-in, takeaway or delivery — Torpedo is standing by.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="tel:+94777121575">📞 Call to Order</a>
+      <a class="btn btn-ghost" href="https://www.google.com/maps/dir/?api=1&destination=66+Vauxhall+Street+Colombo+2" target="_blank" rel="noopener">Get Directions</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div>© 2026 Torpedo · 66 Vauxhall Street, Colombo 2</div>
+    <div><a href="tel:+94777121575">077 712 1575</a> &nbsp;·&nbsp; <a href="mailto:torpedohq@gmail.com">torpedohq@gmail.com</a></div>
+  </div>
+</footer>
+
+<script>
+  // Gallery slideshow: autoplay with manual override
+  (function(){
+    const track = document.getElementById('slideTrack');
+    const dotsWrap = document.getElementById('slideDots');
+    const prevBtn = document.getElementById('slidePrev');
+    const nextBtn = document.getElementById('slideNext');
+    const slideshow = document.getElementById('slideshow');
+    if(!track) return;
+
+    const slides = Array.from(track.children);
+    let index = 0;
+    let autoplayDelay = 4500;
+    let timer = null;
+
+    slides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = 'slide-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', 'Go to slide ' + (i+1));
+      dot.addEventListener('click', () => goTo(i, true));
+      dotsWrap.appendChild(dot);
+    });
+    const dots = Array.from(dotsWrap.children);
+
+    function pauseAllVideos(){
+      slides.forEach(s => { const v = s.querySelector('video'); if(v) v.pause(); });
+    }
+
+    function render(){
+      track.style.transform = 'translateX(' + (-index * 100) + '%)';
+      dots.forEach((d, i) => d.classList.toggle('active', i === index));
+    }
+
+    function goTo(i, manual){
+      pauseAllVideos();
+      index = (i + slides.length) % slides.length;
+      render();
+      if(manual) restartAutoplay();
+    }
+
+    function next(manual){ goTo(index + 1, manual); }
+    function prev(manual){ goTo(index - 1, manual); }
+
+    function startAutoplay(){
+      timer = setInterval(() => next(false), autoplayDelay);
+    }
+    function restartAutoplay(){
+      clearInterval(timer);
+      startAutoplay();
+    }
+
+    nextBtn.addEventListener('click', () => next(true));
+    prevBtn.addEventListener('click', () => prev(true));
+
+    // pause autoplay while hovering, resume on leave
+    slideshow.addEventListener('mouseenter', () => clearInterval(timer));
+    slideshow.addEventListener('mouseleave', () => startAutoplay());
+
+    // basic swipe support
+    let touchStartX = null;
+    track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; clearInterval(timer); }, {passive:true});
+    track.addEventListener('touchend', e => {
+      if(touchStartX === null) return;
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if(Math.abs(dx) > 40){ dx < 0 ? next(true) : prev(true); }
+      else { restartAutoplay(); }
+      touchStartX = null;
+    });
+
+    render();
+    startAutoplay();
+  })();
+
+  // Fade & slide-in reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
