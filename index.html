@@ -321,6 +321,91 @@
   .foot-grid a:hover{color:var(--orange);}
 
   ::selection{background:var(--orange); color:var(--navy-deep);}
+
+  /* ---------- GALLERY BANNER ---------- */
+  .gallery{
+    padding:90px 0;
+    background:var(--navy-deep);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    overflow:hidden;
+  }
+  .gallery-head{margin-bottom:48px;}
+  .gallery-head h2{font-size:clamp(32px,4vw,42px); margin-top:16px;}
+  .gallery-grid{
+    display:grid;
+    grid-template-columns: 1.3fr 0.85fr 1fr;
+    gap:22px;
+    align-items:end;
+  }
+  .gallery-item{
+    position:relative;
+    border:1px solid var(--line);
+    background:var(--navy);
+    overflow:hidden;
+  }
+  .gallery-item img, .gallery-item video{
+    width:100%; height:100%; object-fit:cover; display:block;
+  }
+  .gallery-item.tall{aspect-ratio: 4 / 5;}
+  .gallery-item.wide{aspect-ratio: 16 / 11;}
+  .gallery-item.video-cell{aspect-ratio: 9 / 16; max-height:560px;}
+  .gallery-cap{
+    position:absolute; left:0; bottom:0; right:0;
+    padding:16px 18px;
+    background:linear-gradient(to top, rgba(6,22,32,0.92), transparent);
+    font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--cream-dim);
+  }
+  .play-badge{
+    position:absolute; top:14px; right:14px;
+    width:38px; height:38px; border-radius:50%;
+    background:var(--orange);
+    display:flex; align-items:center; justify-content:center;
+    font-size:13px; color:var(--navy-deep);
+    box-shadow:0 4px 14px rgba(0,0,0,0.35);
+    pointer-events:none;
+  }
+
+  /* fade + slide-in on scroll */
+  .reveal{
+    opacity:0; transform:translateY(36px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.is-visible{opacity:1; transform:translateY(0);}
+  .reveal-delay-1{transition-delay:0.12s;}
+  .reveal-delay-2{transition-delay:0.24s;}
+
+  @media (max-width:900px){
+    .gallery-grid{grid-template-columns:1fr; }
+    .gallery-item.video-cell{max-height:480px; margin:0 auto;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1; transform:none; transition:none;}
+  }
+
+  .variant-row{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+    margin-bottom:50px;
+  }
+  .variant-card{
+    border:1px solid var(--line);
+    overflow:hidden;
+    position:relative;
+    aspect-ratio: 4/5;
+  }
+  .variant-card img{width:100%; height:100%; object-fit:cover;}
+  .variant-card .vc-label{
+    position:absolute; bottom:0; left:0; right:0;
+    padding:14px 16px;
+    background:linear-gradient(to top, rgba(6,22,32,0.9), transparent);
+    font-family:'Anton', sans-serif;
+    font-size:18px;
+    letter-spacing:0.02em;
+    color:var(--cream);
+  }
+  @media (max-width:760px){ .variant-row{grid-template-columns:1fr;} }
 </style>
 </head>
 <body>
@@ -419,22 +504,61 @@
 
 <section class="about" id="about">
   <div class="wrap about-grid">
-    <div>
+    <div class="reveal">
       <span class="eyebrow">The Briefing</span>
       <h2>Built for one mission:<br>flavor.</h2>
     </div>
-    <p class="about-copy">
+    <p class="about-copy reveal reveal-delay-1">
       <strong>Torpedo is Colombo's loading dock for bold, crave-worthy comfort food.</strong> Every torpedo and burger is stacked, dressed and fired fresh — no shortcuts, no waiting around. Whether it's a fast lunch run or a late-night mission, we keep it satisfying, fast, and full of flavor. Grab a seat, pick it up, or have it land at your door. <strong>One bite and you'll know.</strong>
     </p>
+  </div>
+</section>
+
+<section class="gallery">
+  <div class="wrap">
+    <div class="gallery-head reveal">
+      <span class="eyebrow">From The Galley</span>
+      <h2>Real food. Real Torpedo.</h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item wide reveal">
+        <img src="assets/onebite-banner.jpg" alt="Torpedo loaded sub and burger — One Bite And You Know" loading="lazy">
+        <div class="gallery-cap">One bite and you know</div>
+      </div>
+      <div class="gallery-item video-cell reveal reveal-delay-1">
+        <video src="assets/torpedo-reel.mp4" poster="assets/reel-poster.jpg" controls preload="metadata" playsinline></video>
+        <div class="play-badge">▶</div>
+      </div>
+      <div class="gallery-item tall reveal reveal-delay-2">
+        <img src="assets/chicken-torpedo.jpg" alt="Chicken Torpedo — Boom 8 inch or Kaboom 12 inch" loading="lazy">
+        <div class="gallery-cap">Chicken Torpedo · Boom 8&quot; / Kaboom 12&quot;</div>
+      </div>
+    </div>
   </div>
 </section>
 
 <section class="menu" id="menu">
   <div class="wrap">
     <div class="menu-head">
-      <div>
+      <div class="reveal">
         <span class="eyebrow">Menu Briefing</span>
         <h2>Pick your payload.</h2>
+      </div>
+      <img src="assets/torpedo-trio.jpg" alt="Beef, Royale and Chicken Torpedos lineup" loading="lazy" style="width:180px; border:1px solid var(--line);" class="reveal reveal-delay-1">
+    </div>
+
+    <div class="variant-row">
+      <div class="variant-card reveal">
+        <img src="assets/beef-torpedo.jpg" alt="Beef Torpedo — Boom 8 inch or Kaboom 12 inch" loading="lazy">
+        <div class="vc-label">Beef Torpedo</div>
+      </div>
+      <div class="variant-card reveal reveal-delay-1">
+        <img src="assets/royale-torpedo.jpg" alt="Torpedo Royale — Boom 8 inch or Kaboom 12 inch" loading="lazy">
+        <div class="vc-label">Torpedo Royale</div>
+      </div>
+      <div class="variant-card reveal reveal-delay-2">
+        <img src="assets/chicken-torpedo-2.jpg" alt="Chicken Torpedo — Boom 8 inch or Kaboom 12 inch" loading="lazy">
+        <div class="vc-label">Chicken Torpedo</div>
       </div>
     </div>
     <div class="menu-grid">
@@ -520,5 +644,18 @@
   </div>
 </footer>
 
+<script>
+  // Fade & slide-in reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(el => io.observe(el));
+</script>
 </body>
 </html>
